@@ -228,6 +228,10 @@ public class EnvConfigs implements Configs {
   private static final String STRICT_COMPARISON_NORMALIZATION_WORKSPACES = "STRICT_COMPARISON_NORMALIZATION_WORKSPACES";
   private static final String STRICT_COMPARISON_NORMALIZATION_TAG = "STRICT_COMPARISON_NORMALIZATION_TAG";
 
+  // The frequency of buffer flushing for destination connectors
+  public static final String PERIODIC_BUFFER_FLUSH = "PERIODIC_BUFFER_FLUSH";
+  public static final int FLUSH_FREQUENCY_MINUTES = 15;
+
   public static final Map<String, Function<EnvConfigs, String>> JOB_SHARED_ENVS = Map.of(
       AIRBYTE_VERSION, (instance) -> instance.getAirbyteVersion().serialize(),
       AIRBYTE_ROLE, EnvConfigs::getAirbyteRole,
@@ -347,6 +351,10 @@ public class EnvConfigs implements Configs {
 
   public Optional<String> getLocalCatalogPath() {
     return Optional.ofNullable(getEnv(LOCAL_CONNECTOR_CATALOG_PATH));
+  }
+
+  public int getFlushBufferFrequencyInMinutes() {
+    return getEnvOrDefault(PERIODIC_BUFFER_FLUSH, FLUSH_FREQUENCY_MINUTES);
   }
 
   @Override

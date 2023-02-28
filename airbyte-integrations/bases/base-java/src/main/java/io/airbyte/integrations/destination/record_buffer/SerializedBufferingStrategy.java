@@ -133,7 +133,6 @@ public class SerializedBufferingStrategy implements BufferingStrategy {
     }
     close();
     clear();
-
     totalBufferSizeInBytes = 0;
   }
 

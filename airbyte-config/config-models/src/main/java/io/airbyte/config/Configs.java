@@ -348,6 +348,8 @@ public interface Configs {
    */
   String getFeatureFlagClient();
 
+  int getFlushBufferFrequencyInMinutes();
+
   /**
    * Defines a default map of environment variables to use for any launched job containers. The
    * expected format is a JSON encoded String -> String map. Make sure to escape properly. Defaults to
